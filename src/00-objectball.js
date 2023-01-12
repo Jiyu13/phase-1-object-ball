@@ -116,7 +116,7 @@ function gameObject() {
                     "assists": 12,
                     "steals": 22,
                     "blocks": 5,
-                    "slamDunks": 21
+                    "slamDunks": 12
                 }
             }
         }
@@ -124,8 +124,6 @@ function gameObject() {
     
     
     return nestedObj;
-
-
 }
 
 
@@ -216,17 +214,19 @@ function playerStats(playerName) {
 // Which player has the most points? Call the function mostPointsScored
 function mostPointsScored() {
     let mostPoints = 0;
+    let player = "";
     let game = gameObject()
     for (let key in game) {
         const playerList = game[key]["players"];
         for (let playerName in playerList) {
             let playerPoints = playerList[playerName]["points"]
             if (playerPoints > mostPoints) {
-                mostPoints =playerPoints
+                mostPoints = playerPoints
+                player = playerName
             }
         }
     }
-    return mostPoints;
+    return `${player} has the most points, ${mostPoints} points`
 }
 
 
@@ -289,5 +289,5 @@ function playerWithLongestName() {
 
         }
     }
-    return `${player} has the longest name, with ${length} letters`
+    return `${player} has the longest name, with ${length-1} letters` // minus space in name
 }
